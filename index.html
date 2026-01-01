@@ -35,8 +35,6 @@
       document.addEventListener("keyup", keyUpHandler);
       document.addEventListener("mousemove", mouseMoveHandler);
 
-      let interval = 0;
-
       let score = 0;
       let lives = 3;
 
@@ -97,7 +95,6 @@
             if (!lives) {
               alert("GAME OVER");
               document.location.reload();
-              clearInterval(interval);
             } else {
               x = canvas.width / 2;
               y = canvas.height - 30;
@@ -116,6 +113,7 @@
         } else if (leftPressed) {
           paddleX = Math.max(paddleX - 7, 0);
         }
+        requestAnimationFrame(draw);
       }
 
       function keyDownHandler(e) {
@@ -189,7 +187,6 @@
                 if (score === brickColumnCount * brickRowCount) {
                   alert("YOU WIN, CONGRATULATIONS");
                   document.location.reload();
-                  clearInterval(interval);
                 }
               }
             }
@@ -197,7 +194,7 @@
         }
       }
 
-      interval = setInterval(draw, 10);
+      draw();
     </script>
   </body>
 </html>
